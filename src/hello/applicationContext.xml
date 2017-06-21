@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- IOC容器的配置： 要创建的所有的对象都配置在这里
+	<bean id="user" class="cn.itcast.a_hello.User" init-method="init_user" destroy-method="destroy_user" scope="singleton" lazy-init="false"></bean>
+	 -->
+	<bean id="user" class="hello.User" scope="singleton" lazy-init="default" init-method="init_user" destroy-method="destroy_user"></bean>
+	 
+</beans>
+
+
+
+  

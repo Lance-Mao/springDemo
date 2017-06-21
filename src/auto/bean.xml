@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--对象的属性赋值-->
+	<!--1、通过构造函数-->
+	<bean id="user1" class="property.User">
+		<constructor-arg value="100"></constructor-arg>
+		<constructor-arg value="Tom"></constructor-arg>
+	</bean>
+	<!--2、通过set给属性注入值-->
+	<bean id="user" class="property.User" scope="prototype">
+		<property name="id" value="101"></property>
+		<property name="name" value="Jack"></property>
+	</bean>
+	<!--
+	     案例：action/service/dao
+	-->
+	<!--dao instance-->
+	<bean id="userDao" class="property.UserDao"></bean>
+
+	<!--service instance-->
+	<bean id="userService" class="property.UserService">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+
+	<!--action instance-->
+	<bean id="userAction1" class="property.UserAction">
+		<property name="userService" ref="userService"></property>
+	</bean>
+
+	<!--内部bean-->
+	<bean id="userAction" class="property.UserAction">
+		<property name="userService">
+			<bean class="property.UserService">
+				<property name="userDao">
+					<bean class="property.UserDao"></bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<!--
+	    给对象属性注入值
+	      # p 名称空间给对象的属性注入值
+	-->
+
+
+</beans>
+
+
+
+  
